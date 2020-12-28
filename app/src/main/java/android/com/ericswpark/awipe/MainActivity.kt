@@ -172,7 +172,12 @@ class MainActivity : AppCompatActivity() {
         val percentage = currentBytes.toDouble() * 100 / totalBytes
         progressBar.progress = percentage.toInt()
 
-        progressText.text = String.format("%d/%d, %f%%", currentBytes, totalBytes, currentBytes.toDouble() / totalBytes)
+        progressText.text = String.format(
+            "%d/%d, %f%%",
+            currentBytes,
+            totalBytes,
+            currentBytes.toDouble() / totalBytes
+        )
     }
 
     private fun updateRunProgress(currentRun: Int, totalRuns: Int, v: View) {
