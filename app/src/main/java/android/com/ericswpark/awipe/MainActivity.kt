@@ -5,8 +5,9 @@ import android.os.*
 import android.os.storage.StorageManager
 import android.util.Log
 import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -23,38 +24,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun enableCountField(v: View) {
-        val editText = findViewById<EditText>(R.id.main_activity_run_multiple_count_edit_text)
-        val checkBox = findViewById<CheckBox>(R.id.main_activity_run_multiple_checkbox)
-        editText.isEnabled = checkBox.isChecked
-        if (checkBox.isChecked) {
-            editText.requestFocus()
-        }
-    }
-
     fun startWipeClicked(v: View) {
-        hideSoftKeyBoard()
-
-        // Verify count
-        val editText = findViewById<EditText>(R.id.main_activity_run_multiple_count_edit_text)
-        val checkBox = findViewById<CheckBox>(R.id.main_activity_run_multiple_checkbox)
-        if (checkBox.isChecked && Integer.parseInt(editText.text.toString()) >= 3) {
-            confirmLargeCount(v)
-        } else {
-            confirmWipe(v)
-        }
-    }
-
-    private fun confirmLargeCount(v: View) {
-        val dialogBuilder = AlertDialog.Builder(this)
-        dialogBuilder
-            .setTitle(R.string.main_activity_large_count_confirm_title)
-            .setMessage(R.string.main_activity_large_count_confirm_message)
-            .setPositiveButton(android.R.string.ok) { _, _ -> confirmWipe(v) }
-            .setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.cancel() }
-
-        val dialog = dialogBuilder.create()
-        dialog.show()
+        confirmWipe(v)
     }
 
     private fun confirmWipe(v: View) {
@@ -77,34 +48,14 @@ class MainActivity : AppCompatActivity() {
         // Enable progress bars
         val wipeProgressBar = findViewById<ProgressBar>(R.id.main_activity_wipe_progress_bar)
         val wipeProgressText = findViewById<TextView>(R.id.main_activity_wipe_progress_text)
-        val multiProgressBar = findViewById<ProgressBar>(R.id.main_activity_run_multiple_progress_bar)
-        val multiProgressText = findViewById<TextView>(R.id.main_activity_run_multiple_progress_text)
         wipeProgressBar.visibility = View.VISIBLE
         wipeProgressText.visibility = View.VISIBLE
 
         Snackbar.make(v, R.string.main_activity_wipe_started, Snackbar.LENGTH_SHORT).show()
         vibratePhone(v.context)
 
-        // Get run count
-        val editText = findViewById<EditText>(R.id.main_activity_run_multiple_count_edit_text)
-        val checkBox = findViewById<CheckBox>(R.id.main_activity_run_multiple_checkbox)
-
         thread {
-            if (checkBox.isChecked) {
-                // Multiple runs
-                val count = Integer.parseInt(editText.text.toString())
-
-                // Enable progress bars
-                multiProgressBar.visibility = View.VISIBLE
-                multiProgressText.visibility = View.VISIBLE
-
-                for (i in 1..count) {
-                    updateRunProgress(i, count, v)
-                    wipe(v)
-                }
-            } else {
-                wipe(v)
-            }
+            wipe(v)
 
             Snackbar.make(v, R.string.main_activity_wipe_finished, Snackbar.LENGTH_SHORT).show()
             vibratePhone(v.context)
@@ -175,29 +126,6 @@ class MainActivity : AppCompatActivity() {
             totalBytes,
             currentBytes.toDouble() / totalBytes * 100
         )
-    }
-
-    private fun updateRunProgress(currentRun: Int, totalRuns: Int, v: View) {
-        val progressBar = findViewById<ProgressBar>(R.id.main_activity_run_multiple_progress_bar)
-        val progressText = findViewById<TextView>(R.id.main_activity_run_multiple_progress_text)
-
-        val percentage = currentRun * 100 / totalRuns
-        progressBar.progress = percentage
-
-        progressText.text = String.format("%d/%d", currentRun, totalRuns)
-    }
-
-
-    // From https://stackoverflow.com/a/18858246
-    private fun hideSoftKeyBoard() {
-        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        if (imm.isAcceptingText) { // verify if the soft keyboard is open
-            try {
-                imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
-            } catch (e: NullPointerException) {
-                // Ignore, as the keyboard is not open
-            }
-        }
     }
 
     // From https://stackoverflow.com/a/45605249

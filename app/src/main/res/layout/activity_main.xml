@@ -14,53 +14,12 @@
         android:layout_marginBottom="8dp"
         android:text="@string/main_activity_instructions" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <CheckBox
-            android:id="@+id/main_activity_run_multiple_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_activity_run_multiple_checkbox"
-            android:onClick="enableCountField"/>
-
-        <EditText
-            android:id="@+id/main_activity_run_multiple_count_edit_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:hint="@string/main_activity_run_multiple_count_edit_text"
-            android:layout_marginLeft="8dp"
-            android:inputType="number" />
-
-    </LinearLayout>
-
     <Button
         android:id="@+id/main_activity_start_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/main_activity_start_button"
         android:onClick="startWipeClicked"/>
-
-    <ProgressBar
-        android:id="@+id/main_activity_run_multiple_progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:indeterminate="false"
-        android:progress="0"
-        android:visibility="invisible"/>
-
-    <TextView
-        android:id="@+id/main_activity_run_multiple_progress_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="textEnd"
-        android:gravity="end"
-        android:visibility="invisible"/>
 
     <ProgressBar
         android:id="@+id/main_activity_wipe_progress_bar"

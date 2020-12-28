@@ -8,16 +8,8 @@
         clean from recovery.
     </string>
 
-    <string name="main_activity_run_multiple_checkbox">Run multiple times</string>
-    <string name="main_activity_run_multiple_count_edit_text">Count</string>
 
     <string name="main_activity_start_button">Start</string>
-
-    <string name="main_activity_large_count_confirm_title">Too many runs</string>
-    <string name="main_activity_large_count_confirm_message">
-        Overwriting takes a very long time. Are you sure you want to proceed with the specified run
-        count?
-    </string>
 
     <string name="main_activity_start_confirm_title">Proceed?</string>
     <string name="main_activity_start_confirm_message">
