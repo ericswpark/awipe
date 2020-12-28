@@ -6,9 +6,7 @@ Useful for old Android devices that do not have proper encryption or wiping mech
 
 ## Screenshots
 
-![main_window](img/main_window.png?raw=true)
-
-![wipe_process](img/wipe_process.png?raw=true)
+![main_window](img/main_window.png?raw=true) ![wipe_process](img/wipe_process.png?raw=true)
 
 ## Warning
 
