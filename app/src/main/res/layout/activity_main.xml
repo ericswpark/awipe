@@ -22,7 +22,7 @@
 
     <CheckBox
         android:id="@+id/main_activity_do_not_delete_wipe_file_checkbox"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/main_activity_do_not_delete_wipe_file_checkbox"
         android:checked="true"
