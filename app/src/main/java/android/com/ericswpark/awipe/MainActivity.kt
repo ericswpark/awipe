@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity() {
 
         // Verify count
         val editText = findViewById<EditText>(R.id.main_activity_run_multiple_count_edit_text)
-        if (Integer.parseInt(editText.text.toString()) >= 3) {
+        val checkBox = findViewById<CheckBox>(R.id.main_activity_run_multiple_checkbox)
+        if (checkBox.isChecked && Integer.parseInt(editText.text.toString()) >= 3) {
             confirmLargeCount(v)
         } else {
             confirmWipe(v)
