@@ -112,8 +112,10 @@ class MainActivity : AppCompatActivity() {
     private fun vibratePhone(context: Context) {
         if (Build.VERSION.SDK_INT >= 26) {
             (context.getSystemService(VIBRATOR_SERVICE) as Vibrator)
-                .vibrate(VibrationEffect
-                    .createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE))
+                .vibrate(
+                    VibrationEffect
+                        .createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE)
+                )
         } else {
             (context.getSystemService(VIBRATOR_SERVICE) as Vibrator).vibrate(150)
         }
