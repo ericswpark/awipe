@@ -17,14 +17,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="@string/main_activity_warning" />
+        android:text="@string/main_activity_warning"
+        android:layout_marginBottom="8dp"/>
 
     <CheckBox
         android:id="@+id/main_activity_do_not_delete_wipe_file_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_activity_do_not_delete_wipe_file_checkbox"
-        android:checked="true"/>
+        android:checked="true"
+        android:layout_marginBottom="8dp"/>
+
     <Switch
         android:id="@+id/main_activity_keep_screen_on_switch"
         android:layout_width="match_parent"
@@ -38,7 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/main_activity_start_button"
-        android:onClick="startWipeClicked"/>
+        android:onClick="startWipeClicked"
+        android:layout_marginBottom="8dp"/>
 
     <ProgressBar
         android:id="@+id/main_activity_wipe_progress_bar"
@@ -56,6 +60,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="textEnd"
         android:gravity="end"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        android:layout_marginBottom="8dp"/>
 
 </LinearLayout>
