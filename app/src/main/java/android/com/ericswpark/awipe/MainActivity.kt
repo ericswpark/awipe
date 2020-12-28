@@ -169,7 +169,7 @@ class MainActivity : AppCompatActivity() {
         val progressBar = findViewById<ProgressBar>(R.id.main_activity_wipe_progress_bar)
         val progressText = findViewById<TextView>(R.id.main_activity_wipe_progress_text)
 
-        val percentage = currentBytes.toDouble() * 100 / totalBytes
+        val percentage: Double = currentBytes.toDouble() / totalBytes * 100
         progressBar.progress = percentage.toInt()
 
         progressText.text = String.format(
