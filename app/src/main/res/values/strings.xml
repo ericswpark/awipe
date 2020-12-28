@@ -1,11 +1,18 @@
 <resources>
     <string name="app_name">awipe</string>
 
-    <string name="main_activity_instructions">
+    <string name="main_activity_explanation">
         awipe will help you wipe a device by writing random data to a file in the internal storage,
         overwriting free space on the device. For best results, ensure that your phone is encrypted
         before starting the wipe.\n\nOnce the operation is complete, restart the phone and wipe it
         clean from recovery.
+    </string>
+
+    <string name="main_activity_warning">
+        Warning: awipe will ONLY wipe the free space on the device. Before running awipe, it is
+        strongly recommended to perform a factory reset first, then encrypt the device (if the
+        device isn't already encrypted), then run awipe to ensure that everything will be
+        overwritten!
     </string>
 
     <string name="main_activity_do_not_delete_wipe_file_checkbox">Do not delete wipe file</string>
