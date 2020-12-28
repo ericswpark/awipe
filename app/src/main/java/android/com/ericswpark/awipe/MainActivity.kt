@@ -26,10 +26,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startWipeClicked(v: View) {
-        confirmWipe(v)
-    }
-
-    private fun confirmWipe(v: View) {
         val dialogBuilder = AlertDialog.Builder(this)
         dialogBuilder
             .setTitle(R.string.main_activity_start_confirm_title)
