@@ -38,9 +38,10 @@
     </LinearLayout>
 
     <Button
-
+        android:id="@+id/main_activity_start_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/main_activity_start_button" />
+        android:text="@string/main_activity_start_button"
+        android:onClick="startWipeClicked"/>
 
 </LinearLayout>
