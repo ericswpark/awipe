@@ -4,6 +4,8 @@ Android wiping app to help you wipe free space on your device
 
 Useful for old Android devices that do not have proper encryption or wiping mechanisms
 
+[Download latest APK](https://github.com/ericswpark/awipe/releases/latest/download/app-release.apk)
+
 ## Screenshots
 
 ![main_window](img/main_window.png?raw=true) ![wipe_process](img/wipe_process.png?raw=true)
