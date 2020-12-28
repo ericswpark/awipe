@@ -111,11 +111,6 @@ class MainActivity : AppCompatActivity() {
         // On end, enable button
         startButton.isEnabled = true
 
-        // Disable all progress bars
-        wipeProgressBar.visibility = View.INVISIBLE
-        wipeProgressText.visibility = View.INVISIBLE
-        multiProgressBar.visibility = View.INVISIBLE
-        multiProgressText.visibility = View.INVISIBLE
     }
 
     private fun wipe(v: View) {
