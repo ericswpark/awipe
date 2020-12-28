@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">awipe</string>
+
+    <string name="main_activity_instructions">
+        awipe는 기기의 내부 저장소에 무작위로 데이터를 저장해 기기 속 정보를 지웁니다. 최상의 결과를 얻기
+        위해서는 실행 전 기기가 암호화되어 있는지 확인해주세요.\n\n실행이 완료되면, 기기를 다시 시작한 다음
+        리커버리 모드에서 데이터 파티션을 포맷하면 됩니다.
+    </string>
+
+    <string name="main_activity_do_not_delete_wipe_file_checkbox">임시 파일 지우지 않기</string>
+
+    <string name="main_activity_keep_wipe_file_explanation_title">이게 뭔가요?</string>
+    <string name="main_activity_keep_wipe_file_explanation_message">
+        내부 저장소에 정상적으로 파일을 저장했는지 확인하기 위해서, 저장 중 임시 파일의 삭제를 막습니다.
+        리커버리 모드에서 바로 포맷을 하실 때 쓰시면 유용합니다.
+    </string>
+
+    <string name="main_activity_start_button">시작</string>
+
+    <string name="main_activity_start_confirm_title">진행할까요?</string>
+    <string name="main_activity_start_confirm_message">
+        무작위 데이터 저장을 시작할까요? 지워진 데이터는 복구가 불가능합니다!
+    </string>
+
+    <string name="main_activity_wipe_started">지우기 시작했습니다…</string>
+    <string name="main_activity_wipe_finished">성공적으로 지웠습니다!</string>
+
+</resources>
