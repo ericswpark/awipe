@@ -110,7 +110,9 @@ class MainActivity : AppCompatActivity() {
             vibratePhone(v.context)
 
             // On end, enable button
-            startButton.isEnabled = true
+            runOnUiThread {
+                startButton.isEnabled = true
+            }
         }
     }
 
@@ -140,7 +142,9 @@ class MainActivity : AppCompatActivity() {
             try {
                 writeRandomToFile(file)
                 byteCount += 1024 * 1024
-                updateWipeProgress(byteCount, availableBytes, v)
+                runOnUiThread {
+                    updateWipeProgress(byteCount, availableBytes, v)
+                }
             } catch (e: Exception) {
                 // We ran out of space!
                 break
