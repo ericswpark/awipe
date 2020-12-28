@@ -80,4 +80,27 @@
         reset your device, try to delete the app\'s data or remove the app entirely (the Android
         system will delete the app data on app removal).
     </string>
+
+    <string name="faq_activity_wipe_security_title">
+        Q: How secure is awipe? Can someone recover overwritten data?
+    </string>
+    <string name="faq_activity_wipe_security_description">
+        Theoretically, awipe makes all data on your device unrecoverable. However, there are some
+        caveats to look out for.
+        \n\nFirst, awipe is designed to run once. While this should be
+        enough, most flash chips embeeded in most devices nowadays have reserve blocks, meant to
+        reduce wear and tear on the flash chips. awipe cannot wipe these reserve blocks unless the
+        flash controller writes to them.
+        \n\nThe good news is that the chances of your data residing in one of these reserve blocks
+        is slim, since reserve blocks are usually 5-20% of the total flash size. And the more good
+        news is that you can significantly increase the chances of awipe writing over these
+        reserve blocks by simply running awipe multiple times. Do ensure that the checkbox for
+        keeping the temporary file is unchecked if you do decide to run awipe multiple times.
+        \n\nAlso, keep in mind that awipe is beta software. It has not been tested extensively.
+        I am not responsible for any data leaks that occur as a result of using this app.
+        \n\nThe bottom line is, unless you\'re being targeted by a very powerful government branch,
+        such as the NSA, awipe should be more than enough for your needs. It\'s only for selling
+        off old Android devices, and new Android devices have better security when it comes to
+        full device factory resets.
+    </string>
 </resources>

@@ -24,7 +24,8 @@ class FAQActivity : AppCompatActivity() {
                 getString(R.string.faq_activity_leftover_space_description)))
         faqList.add(FAQ(getString(R.string.faq_activity_force_close_title),
                 getString(R.string.faq_activity_force_close_description)))
-
+        faqList.add(FAQ(getString(R.string.faq_activity_wipe_security_title),
+                getString(R.string.faq_activity_wipe_security_description)))
         val faqAdapter = FAQAdapter(faqList)
 
         recyclerView.adapter = faqAdapter
