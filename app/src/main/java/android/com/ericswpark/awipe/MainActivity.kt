@@ -1,18 +1,21 @@
 package android.com.ericswpark.awipe
 
 import android.content.Context
-import android.os.Build
-import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
+import android.os.*
+import android.os.storage.StorageManager
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
+import java.util.*
+import kotlin.random.Random
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +74,14 @@ class MainActivity : AppCompatActivity() {
         val startButton = findViewById<Button>(R.id.main_activity_start_button)
         startButton.isEnabled = false
 
+        // Enable progress bars
+        val wipeProgressBar = findViewById<ProgressBar>(R.id.main_activity_wipe_progress_bar)
+        val wipeProgressText = findViewById<TextView>(R.id.main_activity_wipe_progress_text)
+        val multiProgressBar = findViewById<ProgressBar>(R.id.main_activity_run_multiple_progress_bar)
+        val multiProgressText = findViewById<TextView>(R.id.main_activity_run_multiple_progress_text)
+        wipeProgressBar.visibility = View.VISIBLE
+        wipeProgressText.visibility = View.VISIBLE
+
         Snackbar.make(v, R.string.main_activity_wipe_started, Snackbar.LENGTH_SHORT).show()
         vibratePhone(v.context)
 
@@ -82,7 +93,12 @@ class MainActivity : AppCompatActivity() {
             // Multiple runs
             val count = Integer.parseInt(editText.text.toString())
 
+            // Enable progress bars
+            multiProgressBar.visibility = View.VISIBLE
+            multiProgressText.visibility = View.VISIBLE
+
             for (i in 1..count) {
+                updateRunProgress(i, count, v)
                 wipe(v)
             }
         } else {
@@ -94,6 +110,12 @@ class MainActivity : AppCompatActivity() {
 
         // On end, enable button
         startButton.isEnabled = true
+
+        // Disable all progress bars
+        wipeProgressBar.visibility = View.INVISIBLE
+        wipeProgressText.visibility = View.INVISIBLE
+        multiProgressBar.visibility = View.INVISIBLE
+        multiProgressText.visibility = View.INVISIBLE
     }
 
     private fun wipe(v: View) {
@@ -109,9 +131,56 @@ class MainActivity : AppCompatActivity() {
             stat.blockSize.toLong() * stat.blockCount.toLong()
         }
 
-        Log.d("MainActivity",  "Available bytes: " + availableBytes)
+        Log.d("MainActivity", "Available bytes: " + availableBytes)
         Log.d("MainActivity", "Available MB: " + availableBytes / 1024 / 1024)
 
+
+        val file = File(applicationContext.filesDir, "wipeFile")
+        file.createNewFile()
+
+        if (file.exists()) {
+            val fo: OutputStream = FileOutputStream(file)
+
+            var byteCount = 0
+
+            while (true) {
+                try {
+                    val randomBytes = Random.nextBytes(1024)
+                    fo.write(randomBytes)
+                    fo.flush()
+                    byteCount += 1024
+                    updateWipeProgress(byteCount, availableBytes, v)
+                } catch (e: Exception) {
+                    // We ran out of space!
+                    break
+                }
+            }
+
+            fo.close()
+        }
+
+        // Delete file for next run
+        file.delete()
+    }
+
+    private fun updateWipeProgress(currentBytes: Int, totalBytes: Long, v: View) {
+        val progressBar = findViewById<ProgressBar>(R.id.main_activity_wipe_progress_bar)
+        val progressText = findViewById<TextView>(R.id.main_activity_wipe_progress_text)
+
+        val percentage = currentBytes * 100 / totalBytes
+        progressBar.progress = percentage.toInt()
+
+        progressText.text = String.format("%d/%d", currentBytes, totalBytes)
+    }
+
+    private fun updateRunProgress(currentRun: Int, totalRuns: Int, v: View) {
+        val progressBar = findViewById<ProgressBar>(R.id.main_activity_run_multiple_progress_bar)
+        val progressText = findViewById<TextView>(R.id.main_activity_run_multiple_progress_text)
+
+        val percentage = currentRun * 100 / totalRuns
+        progressBar.progress = percentage
+
+        progressText.text = String.format("%d/%d", currentRun, totalRuns)
     }
 
 
