@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
         val doNotDeleteFileCheckBox = findViewById<CheckBox>(R.id.main_activity_do_not_delete_wipe_file_checkbox)
         thread {
-            wipe(v, !doNotDeleteFileCheckBox.isChecked)
+            wipe(!doNotDeleteFileCheckBox.isChecked)
 
             Snackbar.make(v, R.string.main_activity_wipe_finished, Snackbar.LENGTH_SHORT).show()
             vibratePhone(v.context)
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun wipe(v: View, deleteFile: Boolean) {
+    private fun wipe(deleteFile: Boolean) {
         // Query free space
         val availableBytes = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val storageManager = applicationContext.getSystemService(
