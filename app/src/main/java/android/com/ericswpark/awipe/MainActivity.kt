@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import java.io.FileOutputStream
 import java.util.*
+import kotlin.concurrent.thread
 import kotlin.random.Random
 
 
@@ -88,33 +89,34 @@ class MainActivity : AppCompatActivity() {
         val editText = findViewById<EditText>(R.id.main_activity_run_multiple_count_edit_text)
         val checkBox = findViewById<CheckBox>(R.id.main_activity_run_multiple_checkbox)
 
-        if (checkBox.isChecked) {
-            // Multiple runs
-            val count = Integer.parseInt(editText.text.toString())
+        thread {
+            if (checkBox.isChecked) {
+                // Multiple runs
+                val count = Integer.parseInt(editText.text.toString())
 
-            // Enable progress bars
-            multiProgressBar.visibility = View.VISIBLE
-            multiProgressText.visibility = View.VISIBLE
+                // Enable progress bars
+                multiProgressBar.visibility = View.VISIBLE
+                multiProgressText.visibility = View.VISIBLE
 
-            for (i in 1..count) {
-                updateRunProgress(i, count, v)
+                for (i in 1..count) {
+                    updateRunProgress(i, count, v)
+                    wipe(v)
+                }
+            } else {
                 wipe(v)
             }
-        } else {
-            wipe(v)
+
+            Snackbar.make(v, R.string.main_activity_wipe_finished, Snackbar.LENGTH_SHORT).show()
+            vibratePhone(v.context)
+
+            // On end, enable button
+            startButton.isEnabled = true
         }
-
-        Snackbar.make(v, R.string.main_activity_wipe_finished, Snackbar.LENGTH_SHORT).show()
-        vibratePhone(v.context)
-
-        // On end, enable button
-        startButton.isEnabled = true
-
     }
 
     private fun wipe(v: View) {
         // Query free space
-        val availableBytes = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        val availableBytes = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val storageManager = applicationContext.getSystemService(
                 StorageManager::class.java
             )
