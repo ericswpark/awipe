@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">awipe</string>
+
+    <string name="main_activity_instructions">
+        awipe will help you wipe a device by writing random data to a file in the internal storage,
+        overwriting free space on the device. For best results, ensure that your phone is encrypted
+        before starting the wipe.\n\nOnce the operation is complete, restart the phone and wipe it
+        clean from recovery.
+    </string>
+
+    <string name="main_activity_run_multiple_checkbox">Run multiple times</string>
+    <string name="main_activity_run_multiple_count_edit_text">Count</string>
+
+    <string name="main_activity_start_button">Start</string>
+</resources>
