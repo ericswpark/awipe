@@ -8,6 +8,7 @@
         clean from recovery.
     </string>
 
+    <string name="main_activity_do_not_delete_wipe_file_checkbox">Do not delete wipe file</string>
 
     <string name="main_activity_start_button">Start</string>
 

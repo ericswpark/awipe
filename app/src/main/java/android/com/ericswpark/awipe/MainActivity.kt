@@ -6,6 +6,7 @@ import android.os.storage.StorageManager
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -54,8 +55,9 @@ class MainActivity : AppCompatActivity() {
         Snackbar.make(v, R.string.main_activity_wipe_started, Snackbar.LENGTH_SHORT).show()
         vibratePhone(v.context)
 
+        val doNotDeleteFileCheckBox = findViewById<CheckBox>(R.id.main_activity_do_not_delete_wipe_file_checkbox)
         thread {
-            wipe(v)
+            wipe(v, !doNotDeleteFileCheckBox.isChecked)
 
             Snackbar.make(v, R.string.main_activity_wipe_finished, Snackbar.LENGTH_SHORT).show()
             vibratePhone(v.context)
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun wipe(v: View) {
+    private fun wipe(v: View, deleteFile: Boolean) {
         // Query free space
         val availableBytes = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val storageManager = applicationContext.getSystemService(
@@ -109,8 +111,9 @@ class MainActivity : AppCompatActivity() {
             fo.close()
         }
 
-        // Delete file for next run
-        file.delete()
+        if (deleteFile) {
+            file.delete()
+        }
     }
 
     private fun updateWipeProgress(currentBytes: Long, totalBytes: Long, v: View) {
