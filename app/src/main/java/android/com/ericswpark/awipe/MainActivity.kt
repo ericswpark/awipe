@@ -1,9 +1,13 @@
 package android.com.ericswpark.awipe
 
+import android.com.ericswpark.awipe.FAQActivity.FAQActivity
 import android.content.Context
+import android.content.Intent
 import android.os.*
 import android.os.storage.StorageManager
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
@@ -29,6 +33,23 @@ class MainActivity : AppCompatActivity() {
             explainKeepWipeFile()
             true
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.action_faq -> launchFAQ()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun launchFAQ() {
+        val intent = Intent(this, FAQActivity::class.java)
+        startActivity(intent)
     }
 
     fun startWipeClicked(v: View) {

@@ -33,4 +33,47 @@
 
     <string name="main_activity_wipe_started">Started wipe…</string>
     <string name="main_activity_wipe_finished">Finished wipe!</string>
+
+    <string name="main_activity_action_faq">FAQ</string>
+
+    <string name="faq_activity_overshoot_title">Q: Why does awipe write more than 100%?</string>
+    <string name="faq_activity_overshoot_description">
+        This is because awipe doesn\'t immediately write the random data to the disk. All apps
+        have a buffer, which is periodically flushed to the disk. Therefore, awipe might overshoot
+        the 100% mark and keep on generating random data, even though the disk is full. Once awipe
+        notices that the disk is full, it will stop and alert you.
+    </string>
+
+    <string name="faq_activity_undershoot_title">Q: Why does awipe write less than 100%?</string>
+    <string name="faq_activity_undershoot_description">
+        Sometimes, the system will report more free space than there is available. When this
+        happens, awipe cannot accurately determine the progress of the wipe. awipe will still try
+        and write to every single byte on the disk, so don\'t worry about the system falsely
+        reporting free space to awipe.
+    </string>
+
+    <string name="faq_activity_leftover_space_title">
+        Q: Free space isn\'t 0 bytes after running awipe. Why?
+    </string>
+    <string name="faq_activity_leftover_space_description">
+        The Android system will actually prevent apps from completely filling up the disk, and
+        leave a couple of kilobytes free so that essential system processes can continue to
+        function. awipe will write to the disk until the system reports an I/O failure, as in,
+        there is no more space to write to. However, the Android system will report an I/O failure
+        even if there are a couple of kilobytes left. awipe, or any other Android app for that
+        matter, cannot write to these last bytes because the Android system will prevent it, so
+        that essential system processes can continue to function.
+    </string>
+
+    <string name="faq_activity_force_close_title">
+        Q: Apps are force-closing after running awipe. Why?
+    </string>
+    <string name="faq_activity_force_close_description">
+        This is because the apps do not have enough free space to write temporary files. Recent
+        Android versions try and prevent you from this situation, but it can still happen. This
+        is why you shouldn\'t run awipe on the device you plan to use, as recovering from this
+        situation may require you to perform a factory reset. If you do not want to factory
+        reset your device, try to delete the app\'s data or remove the app entirely (the Android
+        system will delete the app data on app removal).
+    </string>
 </resources>
