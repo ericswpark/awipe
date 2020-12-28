@@ -9,10 +9,8 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.view.WindowManager
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
@@ -50,6 +48,15 @@ class MainActivity : AppCompatActivity() {
     private fun launchFAQ() {
         val intent = Intent(this, FAQActivity::class.java)
         startActivity(intent)
+    }
+
+    fun keepScreenOnSwitchClicked(v: View) {
+        val switch = findViewById<Switch>(R.id.main_activity_keep_screen_on_switch)
+
+        if (switch.isChecked)
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        else
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     fun startWipeClicked(v: View) {

@@ -22,6 +22,8 @@
         리커버리 모드에서 바로 포맷을 하실 때 쓰시면 유용합니다.
     </string>
 
+    <string name="main_activity_keep_screen_on_switch">화면 켜 두기</string>
+
     <string name="main_activity_start_button">시작</string>
 
     <string name="main_activity_start_confirm_title">진행할까요?</string>

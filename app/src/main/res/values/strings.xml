@@ -24,6 +24,8 @@
         mode right after running this app.
     </string>
 
+    <string name="main_activity_keep_screen_on_switch">Keep screen on</string>
+
     <string name="main_activity_start_button">Start</string>
 
     <string name="main_activity_start_confirm_title">Proceed?</string>
