@@ -34,6 +34,8 @@
     <string name="main_activity_wipe_started">Started wipe…</string>
     <string name="main_activity_wipe_finished">Finished wipe!</string>
 
+    <string name="main_activity_overshoot_warning">Finishing up last couple of bytes…</string>
+
     <string name="main_activity_action_faq">FAQ</string>
 
     <string name="faq_activity_overshoot_title">Q: Why does awipe write more than 100%?</string>

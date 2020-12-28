@@ -155,14 +155,25 @@ class MainActivity : AppCompatActivity() {
         val progressText = findViewById<TextView>(R.id.main_activity_wipe_progress_text)
 
         val percentage: Double = currentBytes.toDouble() / totalBytes * 100
-        progressBar.progress = percentage.toInt()
 
-        progressText.text = String.format(
-            "%d/%d, %.2f%%",
-            currentBytes,
-            totalBytes,
-            currentBytes.toDouble() / totalBytes * 100
-        )
+        if (percentage.toInt() <= 100) {
+            progressBar.progress = percentage.toInt()
+            progressText.text = String.format(
+                    "%d/%d, %.2f%%",
+                    currentBytes,
+                    totalBytes,
+                    currentBytes.toDouble() / totalBytes * 100
+            )
+        } else {
+            // Overshoot warning
+            progressBar.progress = 100
+            progressText.text = String.format(
+                    "%d/%d, 100%%%n%s",
+                    currentBytes,
+                    totalBytes,
+                    getString(R.string.main_activity_overshoot_warning)
+            )
+        }
     }
 
     // From https://stackoverflow.com/a/45605249

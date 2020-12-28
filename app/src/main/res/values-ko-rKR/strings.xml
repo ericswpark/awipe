@@ -32,6 +32,8 @@
     <string name="main_activity_wipe_started">지우기 시작했습니다…</string>
     <string name="main_activity_wipe_finished">성공적으로 지웠습니다!</string>
 
+    <string name="main_activity_overshoot_warning">마지막 몇 바이트에 저장 마무리 중…</string>
+
     <string name="main_activity_action_faq">자주 묻는 질문</string>
 
     <string name="faq_activity_overshoot_title">Q: 왜 awipe가 100%보다 높게 가죠?</string>
