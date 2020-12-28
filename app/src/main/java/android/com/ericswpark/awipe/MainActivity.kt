@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity() {
         file.createNewFile()
 
 
-        var byteCount = 0
+        var byteCount: Long = 0
 
         while (true) {
             try {
@@ -161,7 +161,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateWipeProgress(currentBytes: Int, totalBytes: Long, v: View) {
+    private fun updateWipeProgress(currentBytes: Long, totalBytes: Long, v: View) {
         val progressBar = findViewById<ProgressBar>(R.id.main_activity_wipe_progress_bar)
         val progressText = findViewById<TextView>(R.id.main_activity_wipe_progress_text)
 
