@@ -11,7 +11,7 @@
     <string name="main_activity_warning">
         Warning: awipe will ONLY wipe the free space on the device. Before running awipe, it is
         strongly recommended to perform a factory reset first, then encrypt the device (if the
-        device isn't already encrypted), then run awipe to ensure that everything will be
+        device isn\'t already encrypted), then run awipe to ensure that everything will be
         overwritten!
     </string>
 
