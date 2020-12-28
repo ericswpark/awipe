@@ -168,7 +168,6 @@ class MainActivity : AppCompatActivity() {
 
         val percentage: Double = currentBytes.toDouble() / totalBytes * 100
         progressBar.progress = percentage.toInt()
-        Log.d("MainActivity", "Progress: $percentage")
 
         progressText.text = String.format(
             "%d/%d, %.2f%%",
