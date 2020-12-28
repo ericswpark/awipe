@@ -183,7 +183,11 @@ class MainActivity : AppCompatActivity() {
     private fun hideSoftKeyBoard() {
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         if (imm.isAcceptingText) { // verify if the soft keyboard is open
-            imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+            try {
+                imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+            } catch (e: NullPointerException) {
+                // Ignore, as the keyboard is not open
+            }
         }
     }
 
