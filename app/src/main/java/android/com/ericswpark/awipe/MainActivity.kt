@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
             stat.blockSize.toLong() * stat.blockCount.toLong()
         }
 
-        Log.d("MainActivity", "Available bytes: " + availableBytes)
+        Log.d("MainActivity", "Available bytes: $availableBytes")
         Log.d("MainActivity", "Available MB: " + availableBytes / 1024 / 1024)
 
         val file = File(applicationContext.filesDir, "wipeFile")
