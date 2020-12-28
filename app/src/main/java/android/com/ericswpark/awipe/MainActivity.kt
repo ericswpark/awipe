@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         val keepWipeFileCheckBox = findViewById<CheckBox>(R.id.main_activity_do_not_delete_wipe_file_checkbox)
         keepWipeFileCheckBox.setOnLongClickListener {
-            explainKeepWipeFile(it)
+            explainKeepWipeFile()
             true
         }
     }
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    fun explainKeepWipeFile(v: View) {
+    fun explainKeepWipeFile() {
         val dialogBuilder = AlertDialog.Builder(this)
         dialogBuilder
             .setTitle(R.string.main_activity_keep_wipe_file_explanation_title)
@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity() {
                     fo.flush()
                     byteCount += 1024 * 1024
                     runOnUiThread {
-                        updateWipeProgress(byteCount, availableBytes, v)
+                        updateWipeProgress(byteCount, availableBytes)
                     }
                 } catch (e: Exception) {
                     // We ran out of space!
@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateWipeProgress(currentBytes: Long, totalBytes: Long, v: View) {
+    private fun updateWipeProgress(currentBytes: Long, totalBytes: Long) {
         val progressBar = findViewById<ProgressBar>(R.id.main_activity_wipe_progress_bar)
         val progressText = findViewById<TextView>(R.id.main_activity_wipe_progress_text)
 
