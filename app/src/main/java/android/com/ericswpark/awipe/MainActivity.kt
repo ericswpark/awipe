@@ -173,10 +173,10 @@ class MainActivity : AppCompatActivity() {
         progressBar.progress = percentage.toInt()
 
         progressText.text = String.format(
-            "%d/%d, %f%%",
+            "%d/%d, %.2f%%",
             currentBytes,
             totalBytes,
-            currentBytes.toDouble() / totalBytes
+            currentBytes.toDouble() / totalBytes * 100
         )
     }
 
