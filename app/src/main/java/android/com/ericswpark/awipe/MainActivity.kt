@@ -23,6 +23,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val keepWipeFileCheckBox = findViewById<CheckBox>(R.id.main_activity_do_not_delete_wipe_file_checkbox)
+        keepWipeFileCheckBox.setOnLongClickListener {
+            explainKeepWipeFile(it)
+            true
+        }
     }
 
     fun startWipeClicked(v: View) {
@@ -32,6 +38,17 @@ class MainActivity : AppCompatActivity() {
             .setMessage(R.string.main_activity_start_confirm_message)
             .setPositiveButton(android.R.string.ok) { _, _ -> wipeRoutine(v) }
             .setNegativeButton(android.R.string.cancel) { dialog, _ -> dialog.cancel() }
+
+        val dialog = dialogBuilder.create()
+        dialog.show()
+    }
+
+    fun explainKeepWipeFile(v: View) {
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder
+            .setTitle(R.string.main_activity_keep_wipe_file_explanation_title)
+            .setMessage(R.string.main_activity_keep_wipe_file_explanation_message)
+            .setPositiveButton(android.R.string.ok) { dialog, _ -> dialog.cancel() }
 
         val dialog = dialogBuilder.create()
         dialog.show()

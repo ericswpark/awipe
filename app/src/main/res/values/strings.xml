@@ -10,6 +10,13 @@
 
     <string name="main_activity_do_not_delete_wipe_file_checkbox">Do not delete wipe file</string>
 
+    <string name="main_activity_keep_wipe_file_explanation_title">What is this for?</string>
+    <string name="main_activity_keep_wipe_file_explanation_message">
+        To verify if the internal storage is successfully filled up, do not delete the temporary
+        file used by the app. This is useful if you are planning to wipe the phone in recovery
+        mode right after running this app.
+    </string>
+
     <string name="main_activity_start_button">Start</string>
 
     <string name="main_activity_start_confirm_title">Proceed?</string>
