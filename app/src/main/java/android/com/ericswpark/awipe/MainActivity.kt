@@ -135,34 +135,31 @@ class MainActivity : AppCompatActivity() {
         val file = File(applicationContext.filesDir, "wipeFile")
         file.createNewFile()
 
+        if (file.exists()) {
+            val fo = FileOutputStream(file, true)
 
-        var byteCount: Long = 0
+            var byteCount: Long = 0
 
-        while (true) {
-            try {
-                writeRandomToFile(file)
-                byteCount += 1024 * 1024
-                runOnUiThread {
-                    updateWipeProgress(byteCount, availableBytes, v)
+            while (true) {
+                try {
+                    val randomBytes = Random.nextBytes(1024 * 1024)
+                    fo.write(randomBytes)
+                    fo.flush()
+                    byteCount += 1024 * 1024
+                    runOnUiThread {
+                        updateWipeProgress(byteCount, availableBytes, v)
+                    }
+                } catch (e: Exception) {
+                    // We ran out of space!
+                    break
                 }
-            } catch (e: Exception) {
-                // We ran out of space!
-                break
             }
+
+            fo.close()
         }
 
         // Delete file for next run
         file.delete()
-    }
-
-    // Writes 1 MB of random data per invocation
-    private fun writeRandomToFile(file: File) {
-        if (file.exists()) {
-            val fo = FileOutputStream(file, true)
-            val randomBytes = Random.nextBytes(1024 * 1024)
-            fo.write(randomBytes)
-            fo.close()
-        }
     }
 
     private fun updateWipeProgress(currentBytes: Long, totalBytes: Long, v: View) {
@@ -171,6 +168,7 @@ class MainActivity : AppCompatActivity() {
 
         val percentage: Double = currentBytes.toDouble() / totalBytes * 100
         progressBar.progress = percentage.toInt()
+        Log.d("MainActivity", "Progress: $percentage")
 
         progressText.text = String.format(
             "%d/%d, %.2f%%",
