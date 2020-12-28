@@ -2,4 +2,7 @@
 
 Android wiping app
 
-Currently WIP. Works somewhat, but freezes the UI because the wipe logic runs in the main thread.
+## Warning
+
+This app works somewhat, but is very unstable. Please do not trust this app to wipe the device
+completely, for now. Use at your own risk!
