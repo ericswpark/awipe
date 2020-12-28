@@ -1,6 +1,6 @@
 # awipe
 
-Android wiping app to help you wipe free space on your phone
+Android wiping app to help you wipe free space on your device
 
 Useful for old Android devices that do not have proper encryption or wiping mechanisms
 
