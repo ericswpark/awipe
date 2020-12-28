@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import java.io.File
 import java.io.FileOutputStream
-import java.io.OutputStream
 import java.util.*
 import kotlin.random.Random
 
@@ -129,33 +128,35 @@ class MainActivity : AppCompatActivity() {
         Log.d("MainActivity", "Available bytes: " + availableBytes)
         Log.d("MainActivity", "Available MB: " + availableBytes / 1024 / 1024)
 
-
         val file = File(applicationContext.filesDir, "wipeFile")
         file.createNewFile()
 
-        if (file.exists()) {
-            val fo: OutputStream = FileOutputStream(file)
 
-            var byteCount = 0
+        var byteCount = 0
 
-            while (true) {
-                try {
-                    val randomBytes = Random.nextBytes(1024)
-                    fo.write(randomBytes)
-                    fo.flush()
-                    byteCount += 1024
-                    updateWipeProgress(byteCount, availableBytes, v)
-                } catch (e: Exception) {
-                    // We ran out of space!
-                    break
-                }
+        while (true) {
+            try {
+                writeRandomToFile(file)
+                byteCount += 1024 * 1024
+                updateWipeProgress(byteCount, availableBytes, v)
+            } catch (e: Exception) {
+                // We ran out of space!
+                break
             }
-
-            fo.close()
         }
 
         // Delete file for next run
         file.delete()
+    }
+
+    // Writes 1 MB of random data per invocation
+    private fun writeRandomToFile(file: File) {
+        if (file.exists()) {
+            val fo = FileOutputStream(file, true)
+            val randomBytes = Random.nextBytes(1024 * 1024)
+            fo.write(randomBytes)
+            fo.close()
+        }
     }
 
     private fun updateWipeProgress(currentBytes: Int, totalBytes: Long, v: View) {
