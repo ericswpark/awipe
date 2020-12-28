@@ -83,10 +83,10 @@ class MainActivity : AppCompatActivity() {
             val count = Integer.parseInt(editText.text.toString())
 
             for (i in 1..count) {
-                wipe()
+                wipe(v)
             }
         } else {
-            wipe()
+            wipe(v)
         }
 
         Snackbar.make(v, R.string.main_activity_wipe_finished, Snackbar.LENGTH_SHORT).show()
@@ -96,8 +96,22 @@ class MainActivity : AppCompatActivity() {
         startButton.isEnabled = true
     }
 
-    private fun wipe() {
-        
+    private fun wipe(v: View) {
+        // Query free space
+        val availableBytes = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            val storageManager = applicationContext.getSystemService(
+                StorageManager::class.java
+            )
+            val appSpecificInternalDirUuid: UUID = storageManager.getUuidForPath(filesDir)
+            storageManager.getAllocatableBytes(appSpecificInternalDirUuid)
+        } else {
+            val stat = StatFs(Environment.getExternalStorageDirectory().getPath())
+            stat.blockSize.toLong() * stat.blockCount.toLong()
+        }
+
+        Log.d("MainActivity",  "Available bytes: " + availableBytes)
+        Log.d("MainActivity", "Available MB: " + availableBytes / 1024 / 1024)
+
     }
 
 
