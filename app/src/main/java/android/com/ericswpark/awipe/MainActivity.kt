@@ -185,7 +185,7 @@ class MainActivity : AppCompatActivity() {
 
     // From https://stackoverflow.com/a/45605249
     private fun vibratePhone(context: Context) {
-        if (Build.VERSION.SDK_INT >= 26) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             (context.getSystemService(VIBRATOR_SERVICE) as Vibrator)
                 .vibrate(
                     VibrationEffect
