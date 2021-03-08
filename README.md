@@ -22,3 +22,9 @@ awipe is still in beta. It may not securely write over every single byte on your
 4. Run awipe
 5. Factory reset from the Settings app, or if the Settings app force-closes due to low available storage space, then reboot to recovery and format the data partition.
 6. Give your device away or sell it
+
+# Is awipe really necessary?
+
+No, but also yes. On modern Android versions, the encryption key is discarded on factory reset, just like iOS. However, because manufacturers like to change Android and possibly make their distributions out of spec, it's possible that their wiping/encryption scheme has problems. In addition, older Android phones do not mandate encryption, or proper encryption at that.
+
+awipe makes it really hard for data recovery since we are writing randomized, encrypted data over your previous data. Because awipe fills up all of the available storage, it is unlikely that wear-leveling cells in the memory chips will retain enough of your previous information to be useful, if any. However, just like the warning written above, awipe makes no guarantees on the safety of your data.
