@@ -26,7 +26,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val keepWipeFileCheckBox = findViewById<CheckBox>(R.id.main_activity_do_not_delete_wipe_file_checkbox)
+        val keepWipeFileCheckBox =
+            findViewById<CheckBox>(R.id.main_activity_do_not_delete_wipe_file_checkbox)
         keepWipeFileCheckBox.setOnLongClickListener {
             explainKeepWipeFile()
             true
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.action_faq -> launchFAQ()
         }
         return super.onOptionsItemSelected(item)
@@ -54,9 +55,9 @@ class MainActivity : AppCompatActivity() {
         val switch = findViewById<Switch>(R.id.main_activity_keep_screen_on_switch)
 
         if (switch.isChecked)
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         else
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
     fun startWipeClicked(v: View) {
@@ -96,7 +97,8 @@ class MainActivity : AppCompatActivity() {
         Snackbar.make(v, R.string.main_activity_wipe_started, Snackbar.LENGTH_SHORT).show()
         vibratePhone(v.context)
 
-        val doNotDeleteFileCheckBox = findViewById<CheckBox>(R.id.main_activity_do_not_delete_wipe_file_checkbox)
+        val doNotDeleteFileCheckBox =
+            findViewById<CheckBox>(R.id.main_activity_do_not_delete_wipe_file_checkbox)
         thread {
             wipe(!doNotDeleteFileCheckBox.isChecked)
 
@@ -119,7 +121,7 @@ class MainActivity : AppCompatActivity() {
             val appSpecificInternalDirUuid: UUID = storageManager.getUuidForPath(filesDir)
             storageManager.getAllocatableBytes(appSpecificInternalDirUuid)
         } else {
-            val stat = StatFs(Environment.getExternalStorageDirectory().getPath())
+            val stat = StatFs(Environment.getExternalStorageDirectory().path)
             stat.blockSize.toLong() * stat.blockCount.toLong()
         }
 
@@ -166,19 +168,19 @@ class MainActivity : AppCompatActivity() {
         if (percentage.toInt() <= 100) {
             progressBar.progress = percentage.toInt()
             progressText.text = String.format(
-                    "%d/%d, %.2f%%",
-                    currentBytes,
-                    totalBytes,
-                    currentBytes.toDouble() / totalBytes * 100
+                "%d/%d, %.2f%%",
+                currentBytes,
+                totalBytes,
+                currentBytes.toDouble() / totalBytes * 100
             )
         } else {
             // Overshoot warning
             progressBar.progress = 100
             progressText.text = String.format(
-                    "%d/%d, 100%%%n%s",
-                    currentBytes,
-                    totalBytes,
-                    getString(R.string.main_activity_overshoot_warning)
+                "%d/%d, 100%%%n%s",
+                currentBytes,
+                totalBytes,
+                getString(R.string.main_activity_overshoot_warning)
             )
         }
     }
